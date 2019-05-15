@@ -23,6 +23,8 @@ on_install() {
         BUSYBOX="/data/adb/magisk/busybox"
     elif [ -x "/sbin/.magisk/busybox" ]; then
         BUSYBOX="/sbin/.magisk/busybox"
+    elif [ -x "/sbin/.core/busybox" ]; then
+        BUSYBOX="/sbin/.core/busybox"
     else
         abort "! Unsupported Magisk version!"
     fi
