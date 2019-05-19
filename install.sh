@@ -25,6 +25,8 @@ on_install() {
         BUSYBOX="/sbin/.magisk/busybox"
     elif [ -x "/sbin/.core/busybox" ]; then
         BUSYBOX="/sbin/.core/busybox"
+    elif [ -x "/magisk/.core/busybox" ]; then
+        BUSYBOX="/magisk/.core/busybox"
     else
         abort "! Unsupported Magisk version!"
     fi
