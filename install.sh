@@ -23,21 +23,14 @@ print_modname() {
 }
 
 on_install() {
-    local BUSYBOX=""
+    ui_print "- Searching Busybox"
+    local BUSYBOX="$(busybox which busybox)"
+    test ! -x "${BUSYBOX}" && abort "! Unsupported Magisk version!"
 
-    if [ -x "/data/adb/magisk/busybox" ]; then
-        BUSYBOX="/data/adb/magisk/busybox"
-    elif [ -x "/sbin/.magisk/busybox" ]; then
-        BUSYBOX="/sbin/.magisk/busybox"
-    elif [ -x "/sbin/.core/busybox" ]; then
-        BUSYBOX="/sbin/.core/busybox"
-    elif [ -x "/magisk/.core/busybox" ]; then
-        BUSYBOX="/magisk/.core/busybox"
-    else
-        abort "! Unsupported Magisk version!"
-    fi
+    local BUSYBOX_DIR="$(${BUSYBOX} 2>&1 | head -1)"
+    test ! -z "${BUSYBOX_DIR##*topjohnwu*}" && abort "Unsupported Magisk Busybox: ${BUSYBOX_DIR} at ${BUSYBOX}"
 
-    local BUSYBOX_DIR="${MODPATH}/system/xbin"
+    BUSYBOX_DIR="${MODPATH}/system/xbin"
 
     ui_print "- Linking ${BUSYBOX}"
     mkdir -p "${BUSYBOX_DIR}" >&2
