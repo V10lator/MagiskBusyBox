@@ -8,11 +8,17 @@ REPLACE="
 "
 
 print_modname() {
-    local MOD_VERSION=""
-    MOD_VERSION="$(cat "${$TMPDIR}/module.prop" | grep "version=")"
-    MOD_VERSION=${MOD_VERSION#????????}
+    unzip -o "${ZIPFILE}" module.prop -d "${TMPDIR}" >&2
+    local MOD_PROP="$(cat "${TMPDIR}/module.prop")"
+
+    local MOD_NAME="$(echo "${MOD_PROP}" | grep "name=")"
+    MOD_NAME=${MOD_NAME:5}
+
+    local MOD_VERSION="$(echo "${MOD_PROP}" | grep "version=")"
+    MOD_VERSION=${MOD_VERSION:8}
+
     ui_print "******************************"
-    ui_print " MagiskBusyBox"
+    ui_print " Resurrection Remix Oreo Boot"
     ui_print " v${MOD_VERSION}"
 }
 
