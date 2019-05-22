@@ -1,7 +1,7 @@
 id=magisk-busybox
 name=MagiskBusyBox
-version=1.2
-versionCode=3
+version=1.3
+versionCode=4
 author=V10lator
 description=Makes Magisks internal busybox accessible to the system
 support=https://github.com/V10lator/MagiskBusyBox
