@@ -18,7 +18,7 @@ print_modname() {
     MOD_VERSION=${MOD_VERSION:8}
 
     ui_print "******************************"
-    ui_print " Resurrection Remix Oreo Boot"
+    ui_print " ${MOD_NAME}"
     ui_print " v${MOD_VERSION}"
 }
 
